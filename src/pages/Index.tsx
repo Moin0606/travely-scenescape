@@ -2,7 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/home/HeroSection';
-import CarRentalSection from '@/components/home/CarRentalSection';
+import ExplorerSection from '@/components/home/ExplorerSection';
 import ActivitySection from '@/components/home/ActivitySection';
 import HotelSection from '@/components/home/HotelSection';
 
@@ -12,7 +12,7 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <CarRentalSection />
+        <ExplorerSection />
         <ActivitySection />
         <HotelSection />
       </main>
