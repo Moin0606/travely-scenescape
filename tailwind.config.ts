@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -149,7 +148,7 @@ export default {
 				'fade-out': 'fade-out 0.6s ease-out',
 				'slide-in': 'slide-in 0.6s ease-out',
 				'slide-up': 'slide-up 0.6s ease-out',
-				'scale-in': 'scale-in 0.6s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out',
 			}
 		}
 	},
