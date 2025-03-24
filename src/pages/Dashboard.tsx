@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Home, Users, MessageSquare, BookOpen, User, Mail } from "lucide-react";
+import { LogOut, Home, Users, MessageSquare, BookOpen, User, Mail, Plus } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,12 +16,16 @@ import {
   SidebarProvider, 
   SidebarTrigger 
 } from "@/components/ui/sidebar";
+import { useToast } from "@/hooks/use-toast";
 
 import PostFeed from "@/components/dashboard/PostFeed";
+import PostModal from "@/components/dashboard/PostModal";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [showEmail, setShowEmail] = useState(false);
+  const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  const { toast } = useToast();
   
   const handleLogout = () => {
     // For demo purposes, just navigate to the home page
@@ -30,6 +34,22 @@ const Dashboard = () => {
 
   const toggleProfileDisplay = () => {
     setShowEmail(prev => !prev);
+  };
+
+  const openPostModal = () => {
+    setIsPostModalOpen(true);
+  };
+
+  const closePostModal = () => {
+    setIsPostModalOpen(false);
+  };
+
+  const handlePostSubmit = () => {
+    closePostModal();
+    toast({
+      title: "Post created!",
+      description: "Your travel post has been shared with the community.",
+    });
   };
 
   return (
@@ -129,12 +149,28 @@ const Dashboard = () => {
           {/* Main Content Area */}
           <main className="flex-1 p-4 md:p-6 overflow-auto">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold mb-6 text-gray-800">Travel Feed</h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-800">Travel Feed</h2>
+                <Button 
+                  onClick={openPostModal}
+                  className="bg-travely-blue hover:bg-travely-dark-blue transition-colors duration-200 animate-scale-in"
+                  size="sm"
+                >
+                  <Plus size={18} />
+                  <span className="ml-1">Create Post</span>
+                </Button>
+              </div>
               <PostFeed />
             </div>
           </main>
         </div>
       </div>
+
+      <PostModal 
+        isOpen={isPostModalOpen} 
+        onClose={closePostModal} 
+        onSubmit={handlePostSubmit} 
+      />
     </SidebarProvider>
   );
 };
