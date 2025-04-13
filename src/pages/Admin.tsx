@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import UserManagement from '@/components/admin/UserManagement';
 
 interface AdminMenuItem {
   id: string;
@@ -39,6 +40,26 @@ const Admin = () => {
   const handleMenuItemClick = (id: string) => {
     setActiveMenuItem(id);
     toast.success(`${ADMIN_MENU.find(item => item.id === id)?.name} selected`);
+  };
+  
+  const renderContent = () => {
+    switch (activeMenuItem) {
+      case 'users':
+        return <UserManagement />;
+      default:
+        return (
+          <div>
+            <h3 className="text-xl font-semibold mb-4">
+              {ADMIN_MENU.find(item => item.id === activeMenuItem)?.name}
+            </h3>
+            
+            <p className="text-gray-500">
+              This is a placeholder for the {ADMIN_MENU.find(item => item.id === activeMenuItem)?.name.toLowerCase()} interface. 
+              In a complete implementation, this area would contain the relevant management tools and data.
+            </p>
+          </div>
+        );
+    }
   };
   
   return (
@@ -74,14 +95,7 @@ const Admin = () => {
               </div>
               
               <div className="mt-10 p-6 border-t border-gray-200">
-                <h3 className="text-xl font-semibold mb-4">
-                  {ADMIN_MENU.find(item => item.id === activeMenuItem)?.name}
-                </h3>
-                
-                <p className="text-gray-500">
-                  This is a placeholder for the {ADMIN_MENU.find(item => item.id === activeMenuItem)?.name.toLowerCase()} interface. 
-                  In a complete implementation, this area would contain the relevant management tools and data.
-                </p>
+                {renderContent()}
               </div>
             </div>
           </div>
