@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Home, Users, MessageSquare, BookOpen, User, Mail, Plus } from "lucide-react";
+import { LogOut, Home, Users, MessageSquare, BookOpen, User, Mail, Plus, Hotel } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -52,6 +52,10 @@ const Dashboard = () => {
     });
   };
 
+  const navigateToBooking = () => {
+    navigate("/booking");
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-gray-50">
@@ -87,8 +91,8 @@ const Dashboard = () => {
               </SidebarMenuItem>
               
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Book">
-                  <BookOpen />
+                <SidebarMenuButton tooltip="Book" onClick={navigateToBooking}>
+                  <Hotel />
                   <span>Book</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
